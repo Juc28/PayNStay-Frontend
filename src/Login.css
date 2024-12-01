@@ -1,0 +1,130 @@
+/* Estilos para el fondo de la página */
+.login-page {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: url('/src/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+}
+
+/* Contenedor principal del formulario */
+form {
+  max-width: 400px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Título del formulario */
+form h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #d32f2f; /* Rojo temático */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Etiquetas */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  text-align: left;
+}
+
+/* Campos de entrada */
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fefefe;
+  transition: all 0.3s ease;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+  border-color: #d32f2f;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
+}
+
+/* Botón de login */
+form button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(145deg, #d32f2f, #b71c1c);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(255, 255, 255, 0.2);
+}
+
+form button:hover {
+  background: linear-gradient(145deg, #b71c1c, #d32f2f);
+  box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+}
+
+/* Mensaje de error */
+form p.error {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Texto de pie */
+form .footer-text {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+form .footer-text a {
+  color: #d32f2f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+form .footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  form {
+    margin: 50px auto;
+    padding: 20px;
+  }
+
+  form h2 {
+    font-size: 24px;
+  }
+
+  form button {
+    font-size: 14px;
+  }
+}
