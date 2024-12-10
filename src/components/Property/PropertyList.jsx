@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './PropertyList.css';
-
 function PropertyList() {
   const [properties, setProperties] = useState([]);
+  const [userRole, setUserRole] = useState('');
+
   useEffect(() => {
+    const role = localStorage.getItem('userRole');
+    setUserRole(role);
     const mockData = [
       {
         id: 1,
@@ -81,29 +84,23 @@ function PropertyList() {
           ];
     setProperties(mockData);
   }, []);
+ const handleEdit = (propertyId) => {
+    // Redirigir al formulario de edición de propiedad
+    window.location.href = `/edit-property/${propertyId}`;
+  };
 
   return (
     <div className="property-list-container">
-      {/* Campo de búsqueda */}
       <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Buscar por nombre o dirección"
-          // Aquí puedes agregar un controlador de búsqueda si lo deseas
-        />
+        <input type="text" placeholder="Buscar por nombre o dirección" />
       </div>
 
-      {/* Lista de propiedades */}
       <div className="property-list">
         {properties.length > 0 ? (
           properties.map((property) => (
             <div className="property-item" key={property.id}>
               <Link to={`/properties/${property.id}`} style={{ textDecoration: 'none' }}>
-                <img
-                  src={property.image}
-                  alt={`Property at ${property.address}`}
-                  className="property-image"
-                />
+                <img src={property.image} alt={`Property at ${property.address}`} className="property-image" />
                 <div className="property-info">
                   <h3>{property.name}</h3>
                   <p className="property-address">{property.address}</p>
@@ -111,6 +108,11 @@ function PropertyList() {
                   <p>Size: {property.size} m²</p>
                 </div>
               </Link>
+
+              {/* Mostrar el botón de edición solo para los vendedores y agentes */}
+              {(userRole === 'seller' || userRole === 'agent') && property.owner === 'seller' && (
+                <button onClick={() => handleEdit(property.id)}>Editar propiedad</button>
+              )}
             </div>
           ))
         ) : (

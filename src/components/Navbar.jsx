@@ -1,14 +1,23 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';  // Importa useLocation
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
-  const location = useLocation();  // Obtén la ubicación actual
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Si estamos en la página de login (ruta "/"), no mostrar la barra
+  // Obtener el rol del usuario desde localStorage
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const userRole = currentUser?.role;
+
   if (location.pathname === '/') {
-    return null;  // Retorna null para no renderizar la barra de navegación
+    return null;
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem('currentUser');
+    navigate('/');
+  };
 
   return (
     <div className="navbar">
@@ -17,13 +26,14 @@ function Navbar() {
       </div>
 
       <div className="navbar-links">
-        <a href="/properties">Properties</a>
-        <a href="/appointments">Appointments</a>
-        <a href="/transactions">Transactions</a>
+        <Link to="/properties">Properties</Link>
+        <Link to="/profile">Mi Perfil</Link> {/* Nuevo enlace para el perfil */}
+        <Link to="/" onClick={handleLogout} className="navbar-link logout-link">
+          Cerrar sesión
+        </Link>
       </div>
     </div>
   );
 }
 
 export default Navbar;
-

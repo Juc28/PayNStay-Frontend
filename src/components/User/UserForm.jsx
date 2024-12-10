@@ -1,38 +1,33 @@
-import React, { useState } from 'react';
-import './UserForm.css';
+import React, { useEffect, useState } from 'react';
+import UserForm from './UserForm';
 
-function UserForm({ onSubmit, user }) {
-  const [formData, setFormData] = useState(user || { name: '', email: '', password: '', role: '' });
+function UserProfile() {
+  const [user, setUser] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
+
+  const handleProfileUpdate = (updatedUser) => {
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+    setUser(updatedUser);
+    alert('Perfil actualizado exitosamente');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
+  if (!user) {
+    return <p>Cargando perfil...</p>;
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Name:</label>
-      <input type="text" name="name" value={formData.name} onChange={handleChange} />
-
-      <label>Email:</label>
-      <input type="email" name="email" value={formData.email} onChange={handleChange} />
-
-      <label>Password:</label>
-      <input type="password" name="password" value={formData.password} onChange={handleChange} />
-
-      <label>Role:</label>
-      <select name="role" value={formData.role} onChange={handleChange}>
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
-      </select>
-
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <h2>Mi Perfil</h2>
+      <UserForm user={user} onSubmit={handleProfileUpdate} />
+    </div>
   );
 }
 
-export default UserForm;
+export default UserProfile;

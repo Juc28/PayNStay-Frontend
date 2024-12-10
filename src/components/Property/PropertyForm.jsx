@@ -5,7 +5,7 @@ function PropertyList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/properties') // Ruta de tu API
+    fetch('/api/properties')
       .then((response) => response.json())
       .then((data) => {
         setProperties(data);

@@ -1,13 +1,16 @@
-// PropertyDetail.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function PropertyDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [property, setProperty] = useState(null);
+  const [appointment, setAppointment] = useState({ name: '', date: '' });
+  const [appointments, setAppointments] = useState([]);
+ const userRole = JSON.parse(localStorage.getItem('currentUser'))?.role; // 'buyer' o 'seller'
 
   useEffect(() => {
-    // Simulamos la obtención de datos de la propiedad
+
     const mockData = [
       {
         id: 1,
@@ -100,60 +103,85 @@ function PropertyDetail() {
           },
 
     ];
+  const selectedProperty = mockData.find((property) => property.id === parseInt(id));
+      setProperty(selectedProperty);
+    }, [id]);
 
-    const selectedProperty = mockData.find((property) => property.id === parseInt(id));
-    setProperty(selectedProperty);
-  }, [id]);
+    const handleAppointment = (name, date) => {
 
-  if (!property) {
-    return <p>Loading...</p>;
+      const newAppointment = { name, date };
+      setAppointments([...appointments, newAppointment]);
+      alert('Cita agendada con éxito!');
+    };
+
+
+    if (!property) {
+      return <p>Loading...</p>;
+    }
+
+
+    const showAppointmentForm = userRole === 'buyer';
+
+    return (
+      <div className="property-detail" style={{ padding: '20px' }}>
+        <img
+          src={property.image}
+          alt={property.name}
+          style={{
+            width: '100%',
+            height: '400px',
+            objectFit: 'cover',
+            borderRadius: '8px',
+            border: '4px solid #f0f0f0',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+            marginBottom: '20px',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          }}
+        />
+        <div
+          className="property-info"
+          style={{ padding: '20px', maxWidth: '900px', margin: '20px auto' }}
+        >
+          <h2 style={{ fontSize: '28px' }}>{property.name}</h2>
+          <p style={{ fontSize: '18px', color: '#555' }}>
+            <strong>Dirección:</strong> {property.address}
+          </p>
+          <p style={{ fontSize: '18px', color: '#555' }}>
+            <strong>Precio:</strong> ${property.price.toLocaleString()}
+          </p>
+          <p style={{ fontSize: '18px', color: '#555' }}>
+            <strong>Tamaño:</strong> {property.size} m²
+          </p>
+          <p style={{ fontSize: '18px', color: '#555' }}>
+            <strong>Descripción:</strong> {property.description}
+          </p>
+
+          {showAppointmentForm && (
+            <div className="appointment-form" style={{ marginTop: '30px', padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '8px', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)' }}>
+              <h3>Agendar Cita para Ver la Propiedad</h3>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const name = e.target.name.value;
+                  const date = e.target.date.value;
+                  handleAppointment(name, date);
+                }}
+              >
+                <label>Tu Nombre:</label>
+                <input type="text" name="name" required placeholder="Ingrese tu nombre" />
+
+                <label>Fecha de la cita:</label>
+                <input type="date" name="date" required />
+
+                <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '5px' }}>
+                  Agendar Cita
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      </div>
+    );
   }
 
-
-  return (
-    <div className="property-detail" style={{ padding: '20px' }}>
-      <img
-        src={property.image}
-        alt={property.name}
-        style={{
-          width: '100%',
-          height: '400px',
-          objectFit: 'cover',
-          borderRadius: '8px',
-          border: '4px solid #f0f0f0',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-          marginBottom: '20px',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        }}
-        onMouseOver={(e) => {
-          e.target.style.transform = 'scale(1.05)';
-          e.target.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
-        }}
-        onMouseOut={(e) => {
-          e.target.style.transform = 'scale(1)';
-          e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-        }}
-      />
-      <div
-        className="property-info"
-        style={{ padding: '20px', maxWidth: '900px', margin: '20px auto' }}
-      >
-        <h2 style={{ fontSize: '28px' }}>{property.name}</h2>
-        <p style={{ fontSize: '18px', color: '#555' }}>
-          <strong>Dirección:</strong> {property.address}
-        </p>
-        <p style={{ fontSize: '18px', color: '#555' }}>
-          <strong>Precio:</strong> ${property.price.toLocaleString()}
-        </p>
-        <p style={{ fontSize: '18px', color: '#555' }}>
-          <strong>Tamaño:</strong> {property.size} m²
-        </p>
-        <p style={{ fontSize: '18px', color: '#555' }}>
-          <strong>Descripción:</strong> {property.description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export default PropertyDetail;
+  export default PropertyDetail;
