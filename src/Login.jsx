@@ -10,19 +10,19 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Obtener los usuarios guardados en el localStorage
+
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
-    // Buscar el usuario con las credenciales ingresadas
+
     const user = users.find((user) => user.email === email && user.password === password);
 
     if (user) {
       alert('Login exitoso');
 
-      // Guardar el usuario actual en localStorage
+
       localStorage.setItem('currentUser', JSON.stringify(user));
 
-      // Redirigir a la página de propiedades
+
       navigate('/properties');
     } else {
       alert('Credenciales incorrectas');
@@ -51,7 +51,7 @@ function Login() {
         />
         <button type="submit">Login</button>
 
-        {/* Enlace para redirigir a la página de registro */}
+
         <p className="no-account-text">
           ¿No tienes cuenta? <a href="/register">Regístrate aquí</a>
         </p>

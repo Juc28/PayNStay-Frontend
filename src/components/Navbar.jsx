@@ -6,7 +6,6 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Obtener el rol del usuario desde localStorage
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const userRole = currentUser?.role;
 

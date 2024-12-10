@@ -5,14 +5,14 @@ import Login from './Login';
 import Register from './Register';
 import PropertyList from './components/Property/PropertyList';
 import PropertyDetail from './components/Property/PropertyDetails';
-import UserProfile from './components/User/UserProfile'; // Importa el componente de perfil
+import UserProfile from './components/User/UserProfile';
 
 function AppContent() {
   const location = useLocation();
 
   return (
     <>
-      {/* Mostrar Navbar solo si no estamos en la página de registro */}
+
       {location.pathname !== '/register' && <Navbar />}
 
       <Routes>
@@ -20,7 +20,7 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/properties" element={<PropertyList />} />
         <Route path="/properties/:id" element={<PropertyDetail />} />
-        <Route path="/profile" element={<UserProfile />} /> {/* Nueva ruta para el perfil */}
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </>
   );
@@ -33,5 +33,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

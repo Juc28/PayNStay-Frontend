@@ -85,7 +85,7 @@ function PropertyList() {
     setProperties(mockData);
   }, []);
  const handleEdit = (propertyId) => {
-    // Redirigir al formulario de edición de propiedad
+
     window.location.href = `/edit-property/${propertyId}`;
   };
 
@@ -109,7 +109,6 @@ function PropertyList() {
                 </div>
               </Link>
 
-              {/* Mostrar el botón de edición solo para los vendedores y agentes */}
               {(userRole === 'seller' || userRole === 'agent') && property.owner === 'seller' && (
                 <button onClick={() => handleEdit(property.id)}>Editar propiedad</button>
               )}

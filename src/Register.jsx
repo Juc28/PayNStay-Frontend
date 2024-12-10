@@ -11,23 +11,19 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Verificar si el usuario ya está registrado en el localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Comprobar si ya existe un usuario con el mismo correo electrónico
     const userExists = users.some((user) => user.email === email);
 
     if (userExists) {
       alert('Este correo ya está registrado');
     } else {
-      // Si el usuario no existe, agregarlo al localStorage
+
       const newUser = { name, email, password, role };
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
 
       alert('Registro exitoso');
-      navigate('/properties'); // Redirige a la página de propiedades después de registrar
+      navigate('/properties');
     }
   };
 
@@ -36,7 +32,7 @@ function Register() {
       <form onSubmit={handleSubmit}>
         <h2>Registro</h2>
 
-        {/* Campo para ingresar el nombre */}
+
         <label>Nombre:</label>
         <input
           type="text"
