@@ -23,7 +23,7 @@ function Register() {
       localStorage.setItem('users', JSON.stringify(users));
 
       alert('Registro exitoso');
-      navigate('/properties');
+      navigate('/');
     }
   };
 
