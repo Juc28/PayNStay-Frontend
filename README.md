@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# PayNStay Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este es el repositorio del proyecto **PayNStay Frontend**, que proporciona la interfaz de usuario para la plataforma PayNStay. Este sistema está diseñado para ofrecer una experiencia amigable y eficiente para la gestión de alojamientos y pagos.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+- **Interfaz de Usuario Intuitiva:** Diseño claro y fácil de usar.
+- **Integración Backend:** Conexión fluida con los servicios backend.
+- **Responsive Design:** Compatible con dispositivos móviles y de escritorio.
+- **Funcionalidades Principales:**
+  - Registro e inicio de sesión de usuarios.
+  - Gestión de propiedades y pagos.
+  - Visualización de reservas.
 
-### `npm start`
+## Requisitos Previos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Asegúrate de tener instalado lo siguiente en tu máquina:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) (v16 o superior)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
 
-### `npm test`
+## Instalación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/PayNStay-Frontend.git
+   ```
 
-### `npm run build`
+2. Navega al directorio del proyecto:
+   ```bash
+   cd PayNStay-Frontend
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Ejecución
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para ejecutar el proyecto en un entorno de desarrollo:
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+El servidor de desarrollo estará disponible en `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Construcción para Producción
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Para crear una versión optimizada del proyecto:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+```
 
-## Learn More
+Los archivos optimizados estarán disponibles en el directorio `build/`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Estructura del Proyecto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+PayNStay-Frontend/
+├── build/              # Archivos optimizados para producción
+├── src/                # Código fuente del proyecto
+│   ├── components/     # Componentes reutilizables
+│   ├── pages/          # Páginas principales
+│   ├── styles/         # Archivos de estilo
+│   └── App.js          # Punto de entrada principal
+├── public/             # Archivos públicos
+├── package.json        # Configuración del proyecto
+└── README.md           # Documentación
+```
 
-### Code Splitting
+## Detalles del Código
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+El código está organizado de manera modular para facilitar su mantenimiento y escalabilidad:
 
-### Analyzing the Bundle Size
+- **Components:** Incluye componentes reutilizables como formularios, botones y otros elementos de la interfaz.
+- **Pages:** Contiene las vistas principales de la aplicación, como la página de inicio, detalles de propiedades y gestión de usuarios.
+- **Styles:** Archivos CSS organizados para mantener consistencia visual en toda la aplicación.
+- **App.js:** El punto de entrada principal de la aplicación donde se configuran las rutas y el contexto global.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
